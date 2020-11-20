@@ -1,0 +1,75 @@
+Comp 40 Assignment 4: arith
+Authors: Ryan Beckwith and Adam Peters
+Date: 10/27/2020
+
+Code Architecture:
+
+    40image.c:        Command line handling file that determines whether a file
+                      will be compressed or decompressed. Handles each option
+                      by utilizing compress40.c and decompress40.c, 
+                      respectively.
+
+    compress40.c:     Implements the compress40 function (whose contract is 
+                      provided in compress40.h), which compresses a provided
+                      PPM image and writes the compressed PPM image to stdout.
+                      Each 2x2 pixel group in the source PPM image maps to a
+                      single 32-bit word in the compressed image. Images with
+                      odd dimensions are truncated down to even dimensions.
+
+    decompress40.c:   Implements the decompress40 function (whose contract is 
+                      provided in compress40.h), which decompresses a provided 
+                      compressed PPM image and writes the decompressed PPM 
+                      image to stdout. Each 32-bit word in the compressed PPM 
+                      image maps to a 2x2 pixel group in the decompressed 
+                      image.
+    
+    compressmath.h:   Interface for various compression algorithms associated 
+                      with the compression of a PPM image. (See the 
+                      implementation file compressmath.c for more information)
+
+    compressmath.c:   Implements the compressmath.h interface, which specifies 
+                      various mathematical operations to convert RGB values to 
+                      component-video space, as well as a discrete cosine 
+                      transform (DCT) from the brightness values of the 
+                      component-video space. Designed for the purpose of 
+                      implementing image compression algorithms with these 
+                      functions.
+
+    decompressmath.h: Implements the decompressmath.h interface, which
+                      specifies various mathematical operations to convert
+                      component-video values to RGB values, as well as the
+                      inverse of a discrete cosine transform (DCT) from the 
+                      brightness values of the component-video space. Designed 
+                      for the purpose of implementing image decompression 
+                      algorithms with these functions.
+    
+    decompressmath.c: Implements the decompressmath.h interface, which
+                      specifies various mathematical operations to convert
+                      component-video values to RGB values, as well as the
+                      inverse of a discrete cosine transform (DCT) from the
+                      brightness values of the component-video space. Designed
+                      for the purpose of implementing image decompression
+                      algorithms with these functions.
+    
+    compressinfo.h:   Defines macros containing information about the the width
+                      of chroma and DCT values to be compressed and bitpacked.
+                      Further, externs an enum containing information about the
+                      least significant bit of each aforementioned value. 
+
+    bitpack.c:        Implements the bitpack.h interface, which provides the
+                      ability to pack and unpack signed and unsigned field
+                      values into 64-bit unsigned integers. Also implements
+                      functions to check if a specified unsigned/signed value
+                      can be represented with a specified number of bits.
+
+
+Acknowledgements: We perused the course Piazza page (as one does) to ensure
+                  that our implementation was adhering to any of the subtler
+                  specification exposed by the questions of our peers.
+
+Correctness: We believe that all aspects of this project have been implemented
+             correctly. 
+
+Time spent analyzing the problem: 6 hours
+
+Time spent solving the problem: 25 hours
